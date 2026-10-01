@@ -37,11 +37,6 @@ public abstract class HwInit extends OpMode
     PIDFCoefficients pidfCoefHigh = new PIDFCoefficients(300.0, 0.0 ,0.0,15.2); //1780 RPM
     double shootVeloMid = 1500.0;
     PIDFCoefficients pidfCoefMed = new PIDFCoefficients(300.0, 0.0 ,0.0,15.19); //1500 RPM
-    CRServo carousel;
-    CRServo lift;
-    MagneticLimit LoadSw = new MagneticLimit();
-    MagneticLimit ShootSw = new MagneticLimit();
-    TouchSwitch shooterPosSw = new TouchSwitch();
     ColorSensor color_sense = new ColorSensor();
     Limelight3A limelight;
     RGBlight RGB_light = new RGBlight();
@@ -50,10 +45,6 @@ public abstract class HwInit extends OpMode
     double speed_fine_inc = 0.05;
     boolean r_bump_1 = false;
     boolean l_bump_1 = false;
-    boolean carousel_on = false;
-    boolean move_to_shoot = false;
-    boolean move_to_load = false;
-    boolean lift_on = false;
     double carousel_speed = 0.19;
     double robot_yaw;
     double robot_roll;
@@ -86,14 +77,6 @@ public abstract class HwInit extends OpMode
         shooter = hardwareMap.get(DcMotorEx.class, "shooter");
         shooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         shooter.setDirection(DcMotorSimple.Direction.REVERSE);
-
-
-        carousel = hardwareMap.crservo.get("carousel");
-        lift = hardwareMap.crservo.get("lift");
-
-        LoadSw.init(hardwareMap, "load_switch");
-        ShootSw.init(hardwareMap, "shoot_switch");
-        shooterPosSw.init(hardwareMap, "shoot_pos_switch");
         color_sense.init(hardwareMap, "color_sensor");
         RGB_light.init(hardwareMap, "rgb_light");
 
@@ -280,23 +263,6 @@ public abstract class HwInit extends OpMode
         return true;
     }
 
-    public char[] tag_to_pattern(int tag)
-    {
-        char[] retval = null;
-        switch (tag)
-        {
-            case 21:
-                retval = "GPP".toCharArray();
-                break;
-            case 22:
-                retval = "PGP".toCharArray();
-                break;
-            case 23:
-                retval = "PPG".toCharArray();
-                break;
-        }
-        return retval;
-    }
 
     public void shooter_off()
     {
@@ -321,94 +287,6 @@ public abstract class HwInit extends OpMode
         shooter.setVelocity(shootVeloMid - 50);
     }
 
-    public void run_lift_blocking()
-    {
-        try {
-            lift.setPower(1);
-            sleep(1200);
-            do {
-                lift.setPower(-1);
-            }while(!shooterPosSw.isLimitSwitchPressed());
-
-            lift.setPower(0);
-        } catch (InterruptedException e) {
-            lift.setPower(0);
-            telemetry.addData("error: ", e);
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void set_carousel_mode()
-    {
-       if(!move_to_load ||
-          !move_to_shoot) {
-           if (LoadSw.isLimitSwitchClosed()) {
-               move_to_shoot = true;
-           } else if (ShootSw.isLimitSwitchClosed()) {
-               move_to_load = true;
-           } else {
-               move_to_load = true;
-           }
-       }
-    }
-
-    public void move_to_shoot_from_load(double dir)
-    {
-        carousel.setPower(dir * carousel_speed);
-        if(ShootSw.isLimitSwitchClosed())
-        {
-            carousel.setPower(0.0);
-            move_to_shoot = false;
-            /*if (!ShootSw.isLimitSwitchClosed())
-            {
-                carousel.setPower(-1*dir*.01);
-                carousel.setPower(0.0);
-            }*/
-        }
-
-    }
-    public void move_to_load_from_shoot(double dir)
-    {
-        carousel.setPower(dir * carousel_speed);
-        if(LoadSw.isLimitSwitchClosed())
-        {
-            carousel.setPower(0.0);
-            move_to_load = false;
-            /*if (!LoadSw.isLimitSwitchClosed())
-            {
-                carousel.setPower(-1*dir*.01);
-                carousel.setPower(0.0);
-            }*/
-        }
-    }
-    public void move_to_next_shoot_blocking(double dir)
-    {
-        carousel.setPower(dir * carousel_speed);
-        try{
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        do{
-            carousel.setPower(dir * carousel_speed);
-        } while(!ShootSw.isLimitSwitchClosed());
-        carousel.setPower(0.0);
-    }
-
-    public void move_to_next_load_blocking(double dir)
-    {
-        carousel.setPower(dir * carousel_speed);
-        try{
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        do{
-            carousel.setPower(dir * carousel_speed);
-        } while(!LoadSw.isLimitSwitchClosed());
-        carousel.setPower(0.0);
-    }
 
     public void update_light(String color)
     {
