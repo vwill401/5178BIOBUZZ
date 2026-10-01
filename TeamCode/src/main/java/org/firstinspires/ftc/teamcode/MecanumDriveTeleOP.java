@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class MecanumDriveTeleOP extends OpMode {
-    public Servo carousel = null; //carousel, port 0
     //public DcMotor intake1 = null; //artifacts go into robot
     public Servo intake2o1 = null; //artifacts go into cannon
     public Servo intake2o2 = null; //artifacts go into cannon
@@ -22,12 +21,10 @@ public class MecanumDriveTeleOP extends OpMode {
     public void init() {
         drive.init(hardwareMap);
         telemetry.addData("Mode", "null");
-        carousel = hardwareMap.get(Servo.class, "carousel");
         //intake1 = hardwareMap.get(DcMotor.class, "intake1");
         intake2o1 = hardwareMap.get(Servo.class, "intake2o1");
         intake2o2 = hardwareMap.get(Servo.class, "intake2o2");
         //cannon = hardwareMap.get(DcMotor.class, "cannon");
-        carousel.setDirection(Servo.Direction.FORWARD);
         //intake1.setDirection(DcMotor.Direction.FORWARD);
         intake2o1.setDirection(Servo.Direction.FORWARD);
         intake2o2.setDirection(Servo.Direction.FORWARD);
@@ -65,7 +62,6 @@ public class MecanumDriveTeleOP extends OpMode {
 }
 //CODE OVERVIEW
 // - Wheels go brrr
-// - Carousel go brrr
 // - Intake 1 go brrr
 // - Intake 2 go brrr
 // - Cannon go brrr
