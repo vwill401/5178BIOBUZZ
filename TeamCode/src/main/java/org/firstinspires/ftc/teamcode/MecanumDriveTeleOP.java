@@ -8,10 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class MecanumDriveTeleOP extends OpMode {
-    //public DcMotor intake1 = null; //artifacts go into robot
-    public Servo intake2o1 = null; //artifacts go into cannon
-    public Servo intake2o2 = null; //artifacts go into cannon
-    //public DcMotor cannon = null; //artifacts go BOOM
+
     MecanumDriveCode drive = new MecanumDriveCode();
 
     double forward, strafe, rotate;
