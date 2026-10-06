@@ -55,12 +55,14 @@ public class   TeleOpMode extends HwInit {
         LimeLightLocalize();
 
 
-        double curVelocity = shooter.getVelocity();
+        double curVelocity = shooter1.getVelocity();
         telemetry.addData("Shooter Velocity: ", curVelocity);
-        double current = shooter.getCurrent(CurrentUnit.MILLIAMPS);
+        double current = shooter1.getCurrent(CurrentUnit.MILLIAMPS);
         telemetry.addData("Shooter current(mA): ", current);
-        double liftPow = lift.getPower();
-        telemetry.addData("lift power: ", liftPow);
+       double curVelocity2 = shooter2.getVelocity();
+       telemetry.addData("Shooter 2 Velocity: ", curVelocity);
+       double current2 = shooter2.getCurrent(CurrentUnit.MILLIAMPS);
+       telemetry.addData("Shooter 2 current(mA): "current2);
         Boolean state = LimeLightRead();
         telemetry.addData("current tag: ", current_tag);
         ColorSensor.DetectedColor color = color_sense.getDetectedColor(telemetry);
