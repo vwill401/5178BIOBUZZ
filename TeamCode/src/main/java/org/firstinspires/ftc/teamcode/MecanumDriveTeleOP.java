@@ -26,10 +26,6 @@ public class MecanumDriveTeleOP extends OpMode {
         forward = gamepad1.left_stick_y;
         strafe = gamepad1.left_stick_x;
         rotate = gamepad1.right_stick_x;
-        boolean advCarousel = gamepad2.right_bumper; //Carousel on right bumper (Marissa)
-        //boolean advintake1 = gamepad2.left_bumper; //Intake 1 on left bumper (Marissa)
-        boolean advintake2o1 = gamepad2.a; //Intake 2 on a button (Marissa)
-        boolean advintake2o2 = gamepad2.a; //Intake 2 on a button (Marissa)
         //boolean advCannon =  gamepad2.b; //Cannon launch on b button (Marissa)
 
         if(mode == -1){
@@ -50,6 +46,4 @@ public class MecanumDriveTeleOP extends OpMode {
 }
 //CODE OVERVIEW
 // - Wheels go brrr
-// - Intake 1 go brrr
-// - Intake 2 go brrr
 // - Cannon go brrr
