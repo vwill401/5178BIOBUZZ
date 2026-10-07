@@ -21,11 +21,6 @@ public class   TeleOpMode extends HwInit {
   boolean shooter_near_on = false;
   boolean intake_on = false;
   boolean intake_clear = false;
-  double carousel_dir = 1;
-  ElapsedTime lift_up_timer = new ElapsedTime(MILLISECONDS);
-  double lift_up_time_limit = 1300;
-  boolean move_lift_up = false;
-  boolean move_lift_down = false;
   boolean limelight_read = false;
 
   long tick = 0;

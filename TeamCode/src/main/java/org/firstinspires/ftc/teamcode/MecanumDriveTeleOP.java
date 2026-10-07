@@ -18,15 +18,6 @@ public class MecanumDriveTeleOP extends OpMode {
     public void init() {
         drive.init(hardwareMap);
         telemetry.addData("Mode", "null");
-        //intake1 = hardwareMap.get(DcMotor.class, "intake1");
-        intake2o1 = hardwareMap.get(Servo.class, "intake2o1");
-        intake2o2 = hardwareMap.get(Servo.class, "intake2o2");
-        //cannon = hardwareMap.get(DcMotor.class, "cannon");
-        //intake1.setDirection(DcMotor.Direction.FORWARD);
-        intake2o1.setDirection(Servo.Direction.FORWARD);
-        intake2o2.setDirection(Servo.Direction.FORWARD);
-        //cannon.setDirection(DcMotor.Direction.FORWARD);
-        //Things go brrr
     }
 
     @Override
