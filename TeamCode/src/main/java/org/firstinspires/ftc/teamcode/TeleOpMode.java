@@ -19,8 +19,8 @@ public class   TeleOpMode extends HwInit {
   float shooter_far_on = 0.0F;
   float shooter_mid_on = 0.0F;
   boolean shooter_near_on = false;
-  boolean intake_on = false;
-  boolean intake_clear = false;
+  boolean intake1_on = false;
+  boolean intake2_on = false;
   boolean limelight_read = false;
 
   long tick = 0;
@@ -149,8 +149,8 @@ public class   TeleOpMode extends HwInit {
     }
     public void do_p2_things() {
 
-        intake_on = gamepad2.dpad_up;
-        intake_clear = gamepad2.dpad_down;
+        intake1_on = gamepad2.dpad_up;
+        intake2_on = gamepad2.dpad_up;
         shooter_near_on = gamepad2.left_bumper;
         shooter_mid_on = gamepad2.left_trigger;
         shooter_far_on = gamepad2.right_trigger;

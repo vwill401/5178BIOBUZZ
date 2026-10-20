@@ -31,9 +31,10 @@ public abstract class HwInit extends OpMode
     DcMotorEx backLeftMotor;
     DcMotorEx frontRightMotor;
     DcMotorEx frontLeftMotor;
-    DcMotor intake;
-    DcMotorEx shooter1;
-    DcMotorEx shooter2;
+    DcMotor intake1;
+    DcMotor intake2;
+    DcMotorEx shooterP;
+    DcMotorEx shooterN;
     double shootVeloHigh = 1780.0;
     PIDFCoefficients pidfCoefHigh = new PIDFCoefficients(300.0, 0.0 ,0.0,15.2); //1780 RPM
     double shootVeloMid = 1500.0;
@@ -73,14 +74,15 @@ public abstract class HwInit extends OpMode
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        intake = hardwareMap.dcMotor.get("intake");
+        intake1 = hardwareMap.dcMotor.get("intake1");
+        intake2 = hardwareMap.dcMotor.get("intake2");
 
-        shooter1 = hardwareMap.get(DcMotorEx.class, "shooter1");
-        shooter1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        shooter1.setDirection(DcMotorSimple.Direction.REVERSE);
-        shooter2 = hardwareMap.get(DcMotorEx.class, "shooter2");
-        shooter2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        shooter2.setDirection(DcMotorSimple.Direction.REVERSE);
+        shooterP = hardwareMap.get(DcMotorEx.class, "shooter1");
+        shooterP.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        shooterP.setDirection(DcMotorSimple.Direction.REVERSE);
+        shooterN = hardwareMap.get(DcMotorEx.class, "shooter2");
+        shooterN.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        shooterN.setDirection(DcMotorSimple.Direction.REVERSE);
         color_sense.init(hardwareMap, "color_sensor");
         RGB_light.init(hardwareMap, "rgb_light");
 
@@ -270,32 +272,32 @@ public abstract class HwInit extends OpMode
 
     public void shooter_off()
     {
-        shooter1.setPower(0.0);
-        shooter2.setPower(0.0);
+        shooterP.setPower(0.0);
+        shooterN.setPower(0.0);
     }
     public void shooter_on_far()
     {
         //shooter.setPower(0.85);
-        shooter1.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefHigh);
-        shooter1.setVelocity(shootVeloHigh);
-        shooter2.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefHigh);
-        shooter2.setVelocity(shootVeloHigh);
+        shooterP.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefHigh);
+        shooterP.setVelocity(shootVeloHigh);
+        shooterN.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefHigh);
+        shooterN.setVelocity(shootVeloHigh);
     }
     public void shooter_on_mid()
     {
         //shooter.setPower(0.75);
-        shooter1.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
-        shooter1.setVelocity(shootVeloMid);
-        shooter2.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
-        shooter2.setVelocity(shootVeloMid);
+        shooterP.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
+        shooterP.setVelocity(shootVeloMid);
+        shooterN.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
+        shooterN.setVelocity(shootVeloMid);
     }
     public void shooter_on_near()
     {
         //shooter.setPower(0.70);
-        shooter1.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
-        shooter1.setVelocity(shootVeloMid - 50);
-        shooter2.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
-        shooter2.setVelocity(shootVeloMid - 50);
+        shooterP.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
+        shooterP.setVelocity(shootVeloMid - 50);
+        shooterN.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefMed);
+        shooterN.setVelocity(shootVeloMid - 50);
     }
 
 
