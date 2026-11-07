@@ -1,8 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
-public class AutoModeRed {
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
+@Autonomous (name="Mechhawks Auto Red")
+public class AutoModeRed extends TeleOpMode {
     //move to up red hive (limelights probably, unless up hive is standardized)
+
     //shoot preloaded nectar(?)
+    shooter_far_on
     //move to flower (pedropathing, need ryan)
     //get pollen from flower (waiting on build for mechanism)
     //move back to hive, shoot more balls
