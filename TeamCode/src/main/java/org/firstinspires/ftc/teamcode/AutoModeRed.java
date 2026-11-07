@@ -8,6 +8,11 @@ public class AutoModeRed extends TeleOpMode {
 
     //shoot preloaded nectar/pollen
 
+    @Override
+    public void shooter_on_near() {
+        super.shooter_far_on = true;
+    }
+
     //move to flower (pedropathing, need ryan)
     //get pollen from flower (waiting on build for mechanism)
     //move back to hive, shoot more balls
