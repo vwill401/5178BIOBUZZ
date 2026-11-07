@@ -31,8 +31,8 @@ public abstract class HwInit extends OpMode
     DcMotorEx backLeftMotor;
     DcMotorEx frontRightMotor;
     DcMotorEx frontLeftMotor;
-    DcMotor intake1;
-    DcMotor intake2;
+    DcMotor intake;
+    DcMotor uptake;
     DcMotorEx shooterP;
     DcMotorEx shooterN;
     double shootVeloHigh = 1780.0;
@@ -74,8 +74,8 @@ public abstract class HwInit extends OpMode
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        intake1 = hardwareMap.dcMotor.get("intake1");
-        intake2 = hardwareMap.dcMotor.get("intake2");
+        intake = hardwareMap.dcMotor.get("intake");
+        uptake = hardwareMap.dcMotor.get("uptake");
 
         shooterP = hardwareMap.get(DcMotorEx.class, "shooter1");
         shooterP.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
