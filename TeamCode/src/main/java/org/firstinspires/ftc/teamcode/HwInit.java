@@ -252,7 +252,7 @@ public abstract class HwInit extends OpMode
             if (!result.getFiducialResults().isEmpty()) {
                 current_tag = result.getFiducialResults().get(0).getFiducialId();
             }
-            if (current_tag == 20 || current_tag == 24) {
+            if ((current_tag == 30 || current_tag == 31 ||current_tag == 32||current_tag == 33||current_tag == 34||current_tag == 35||current_tag == 36||current_tag == 37) || (current_tag == 38||current_tag == 39||current_tag == 40||current_tag == 41||current_tag == 42||current_tag == 43||current_tag == 44||current_tag == 45)) {
 
 
                 Pose3D botpose_mt2 = result.getBotpose_MT2();
