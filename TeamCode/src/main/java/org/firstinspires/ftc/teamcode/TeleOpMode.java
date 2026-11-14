@@ -150,7 +150,7 @@ public class   TeleOpMode extends HwInit {
     public void do_p2_things() {
 
         intake_on = gamepad2.dpad_up;
-        uptake_on = gamepad2.dpad_up;
+        uptake_on = gamepad2.dpad_down;
         shooter_near_on = gamepad2.left_bumper;
         shooter_mid_on = gamepad2.left_trigger;
         shooter_far_on = gamepad2.right_trigger;

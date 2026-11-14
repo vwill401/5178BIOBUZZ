@@ -47,7 +47,6 @@ public abstract class HwInit extends OpMode
     double speed_fine_inc = 0.05;
     boolean r_bump_1 = false;
     boolean l_bump_1 = false;
-    double carousel_speed = 0.19;
     double robot_yaw;
     double robot_roll;
     double robot_pitch;
